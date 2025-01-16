@@ -1,0 +1,13 @@
+.vs/
+.vscode/
+
+Binaries/
+Binaries-Int/
+
+*.sln
+*.vcxproj*
+*.mk
+/Makefile
+**/Makefile
+
+*.log
