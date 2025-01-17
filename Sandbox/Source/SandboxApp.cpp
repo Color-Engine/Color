@@ -1,30 +1,27 @@
-#include "Core/Base.h"
+#include "SandboxApp.h"
 
-int EntryPoint(int argc, char** argv)
+// -------------------------------------------------------
+// >> Entry Point functions defined & implemented here <<
+#include "Core/EntryPoint.h"
+// -------------------------------------------------------
+
+namespace Sandbox
 {
-	return 0;
+	SandboxApp::SandboxApp(const Color::ApplicationSpecification& specification, const Color::CommandLineArgs& args)
+		: Color::Application(specification, args)
+	{
+	}
+
+	SandboxApp::~SandboxApp()
+	{
+	}
 }
 
-#if defined CL_SHIPPING && defined CL_PLATFORM_WINDOWS
-
-#include <Windows.h>
-
-int CALLBACK WinMain
-(
-	_In_     HINSTANCE hInstance,
-	_In_opt_ HINSTANCE hPrevInstance,
-	_In_     LPSTR     lpCmdLine,
-	_In_     int       nCmdShow
-)
+Color::Application* Color::CreateApplicationInstance(const Color::CommandLineArgs& args)
 {
-	return EntryPoint(__argc, __argv);
+	Color::ApplicationSpecification specification;
+	specification.Name = "Sandbox";
+	specification.WorkingDir = ".";
+
+	return new Sandbox::SandboxApp(specification, args);
 }
-
-#else
-
-int main(int argc, char** argv)
-{
-	return EntryPoint(argc, argv);
-}
-
-#endif
