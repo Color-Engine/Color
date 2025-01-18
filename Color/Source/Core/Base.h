@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Misc/PlatformInfo.h"
 #include "Misc/CompilerInfo.h"
 #include "Misc/MiscDefines.h"
 #include "Misc/BuildInfo.h"

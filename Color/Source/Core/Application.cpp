@@ -6,8 +6,11 @@ namespace Color
 	Application::Application(const ApplicationSpecification& specification, const CommandLineArgs& args)
 		: m_Specification(specification), m_Args(args)
 	{
-		// TODO: Assert !s_Instance
+		CL_CORE_ASSERT(!s_Instance, "An application instance already exists!");
 		s_Instance = this;
+
+		Log::Init();
+		CL_CORE_INFO("Initialized logging.");
 
 		// TODO: Switch wdir if specified via appspec
 	}
@@ -22,6 +25,7 @@ namespace Color
 	{
 		if (m_Running)
 		{
+			CL_CORE_WARN("The application is already running yet Run() was called, ignoring request.");
 			return;
 		}
 
@@ -40,6 +44,12 @@ namespace Color
 
 	void Application::Quit()
 	{
+		if (!m_Running)
+		{
+			CL_CORE_WARN("The application is already not running yet Quit() was called, ignoring request.");
+			return;
+		}
+
 		m_Running = false;
 	}
 

@@ -1,10 +1,10 @@
 #pragma once
 
+#include "Core/Assert.h"
+
 #ifdef CL_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
-
-#include "Core/Base.h"
 
 #include <unordered_map>
 #include <unordered_set>

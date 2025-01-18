@@ -10,6 +10,10 @@ workspace "Color"
 
 include "Globals.lua"
 
+group "Engine/ThirdParty"
+	include "Color/ThirdParty/fmt"
+group ""
+
 group "Engine"
     include "Color"
 group ""

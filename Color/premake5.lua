@@ -17,7 +17,11 @@ project "Color"
 
     includedirs
     {
-        "Source"
+        "Source",
+		
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.fmt}"
     }
 
     filter "system:windows"
@@ -25,7 +29,14 @@ project "Color"
         defines
         {
             "CL_PLATFORM_WINDOWS",
-            "CL_STABLE_PLATFORM"
+            "CL_STABLE_PLATFORM",
+			
+			"_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS",
+			"_CRT_SECURE_NO_WARNINGS"
+        }
+        excludes
+        {
+            "Source/Platform/Linux/**.cpp"
         }
 
     filter "system:linux"
@@ -33,6 +44,10 @@ project "Color"
         {
             "CL_PLATFORM_LINUX",
             "CL_EXPERIMENTAL_PLATFORM"
+        }
+        excludes
+        {
+            "Source/Platform/Windows/**.cpp"
         }
     
     filter "architecture:x64"

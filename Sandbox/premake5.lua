@@ -14,12 +14,17 @@ project "Sandbox"
     includedirs
     {
         "%{IncludeDir.Color}",
-        "Source"
+        "Source",
+		
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.fmt}"
     }
 
     links
     {
-        "Color"
+        "Color",
+		"fmt"
     }
 
     filter "system:windows"
@@ -27,7 +32,10 @@ project "Sandbox"
         defines
         {
             "CL_PLATFORM_WINDOWS",
-            "CL_STABLE_PLATFORM"
+            "CL_STABLE_PLATFORM",
+			
+			"_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS",
+			"_CRT_SECURE_NO_WARNINGS"
         }
 
     filter "system:linux"
