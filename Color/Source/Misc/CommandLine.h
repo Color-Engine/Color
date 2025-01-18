@@ -8,9 +8,7 @@ namespace Color
 		int Size = 0;
 
 		CommandLineArgs() = default;
-		CommandLineArgs(const CommandLineArgs&) = default;
-		CommandLineArgs& operator=(const CommandLineArgs&) = default;
-		~CommandLineArgs() = default;
+		CommandLineArgs(char** list, int size);
 
 		bool Contains(const char* arg) const;
 		int Find(const char* arg) const;

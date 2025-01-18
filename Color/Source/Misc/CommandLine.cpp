@@ -3,6 +3,11 @@
 
 namespace Color
 {
+	CommandLineArgs::CommandLineArgs(char** list, int size)
+		: List(list), Size(Size)
+	{
+	}
+
 	bool CommandLineArgs::Contains(const char* arg) const
 	{
 		for (int i = 0; i < Size; i++)
