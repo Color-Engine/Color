@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string_view>
+
 namespace Color
 {
 	enum class BuildConfig
@@ -14,6 +16,18 @@ namespace Color
 		x64,
 		ARM64
 	};
+
+	inline std::string_view ArchitectureToString(Architecture arch)
+	{
+		switch (arch)
+		{
+		case Architecture::x64:   return "x64";
+		case Architecture::ARM64: return "ARM64";
+		default: break;
+		}
+
+		return {};
+	}
 
 	#ifdef CL_DEVELOPMENT
 		inline constexpr BuildConfig c_BuildCfg = BuildConfig::Development;

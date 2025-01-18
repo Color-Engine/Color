@@ -1,6 +1,8 @@
 #include "EnginePCH.h"
 #include "Application.h"
 
+#include "Utils/FileSystem.h"
+
 namespace Color
 {
 	Application::Application(const ApplicationSpecification& specification, const CommandLineArgs& args)
@@ -12,7 +14,33 @@ namespace Color
 		Log::Init();
 		CL_CORE_INFO("Initialized logging.");
 
-		// TODO: Switch wdir if specified via appspec
+		CL_CORE_INFO("Engine Build Info:");
+		CL_CORE_INFO("  Compiler         -> {} ({})", c_CompilerInfo.Name, c_CompilerInfo.Abbreviation);
+		CL_CORE_INFO("  Compilation Date -> {}", __DATE__);
+		CL_CORE_INFO("  Compilation Time -> {}", __TIME__);
+		CL_CORE_INFO("  Platform         -> {}-{}", CL_PLATFORM_NAME_STRING, ArchitectureToString(c_Architecture));
+
+		if (FileSystem::IsDir(specification.WorkingDir))
+		{
+			std::string wdir = FileSystem::GetWorkingDir();
+			std::string abs = FileSystem::Abs(specification.WorkingDir);
+
+			if (wdir != abs)
+			{
+				CL_CORE_TRACE("Application specification specified a different working directory than the current one.");
+				CL_CORE_TRACE("  Current Working Directory   -> {}", wdir);
+				CL_CORE_TRACE("  Requested Working Directory -> {}", abs);
+				
+				if (FileSystem::SetWorkingDir(abs))
+				{
+					CL_CORE_INFO("Successfully changed the working directory to '{}'.", FileSystem::GetWorkingDir());
+				}
+				else
+				{
+					CL_CORE_ERROR("Change of the working directory failed!");
+				}
+			}
+		}
 	}
 
 	Application::~Application()

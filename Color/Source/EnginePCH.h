@@ -4,6 +4,9 @@
 
 #ifdef CL_PLATFORM_WINDOWS
 	#include <Windows.h>
+#elif defined CL_PLATFORM_LINUX
+	#include <linux/limits.h>
+	#include <unistd.h>
 #endif
 
 #include <unordered_map>
