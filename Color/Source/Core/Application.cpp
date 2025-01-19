@@ -1,6 +1,7 @@
 #include "EnginePCH.h"
 #include "Application.h"
 
+#include "Utils/PlatformUtils.h"
 #include "Utils/FileSystem.h"
 
 namespace Color
@@ -60,7 +61,13 @@ namespace Color
 		m_Running = true;
 		while (m_Running)
 		{
+			// TODO: Actually calculate it
+			Timestep ts = 0.0f;
 
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate(ts);
+			}
 		}
 
 		CleanUp();
@@ -84,5 +91,37 @@ namespace Color
 	void Application::Exit(int exitcode)
 	{
 		std::exit(exitcode);
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
+	}
+
+	void Application::PopLayer(Layer* layer, bool deleteObject)
+	{
+		layer->OnDetach();
+		m_LayerStack.PopLayer(layer);
+		if (deleteObject)
+		{
+			delete layer;
+		}
+	}
+
+	void Application::PopOverlay(Layer* overlay, bool deleteObject)
+	{
+		overlay->OnDetach();
+		m_LayerStack.PopOverlay(overlay);
+		if (deleteObject)
+		{
+			delete overlay;
+		}
 	}
 }

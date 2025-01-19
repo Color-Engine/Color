@@ -16,6 +16,36 @@ namespace Color
 	{
 	}
 
+	void Scene::Start()
+	{
+		if (m_Running)
+		{
+			return;
+		}
+		m_Running = true;
+	}
+
+	void Scene::Update(Timestep ts)
+	{
+		if (m_Running && !m_Paused)
+		{
+
+		}
+	}
+
+	void Scene::Stop()
+	{
+		if (!m_Running)
+		{
+			return;
+		}
+		m_Running = false;
+	}
+
+	void Scene::SetPaused(bool paused)
+	{
+	}
+
 	Ref<Scene> Scene::Copy()
 	{
 		Ref<Scene> scene = MakeRef<Scene>();

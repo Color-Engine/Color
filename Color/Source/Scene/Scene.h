@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene/Entity.h"
+#include "Misc/Timestep.h"
 
 #include <unordered_set>
 
@@ -11,6 +12,13 @@ namespace Color
 	public:
 		Scene();
 		~Scene();
+
+		void Start();
+		void Update(Timestep ts);
+		void Stop();
+
+		void SetPaused(bool paused);
+		bool IsPaused() const { return m_Paused; }
 
 		// Creates a copy of the scene.
 		Ref<Scene> Copy();
@@ -53,5 +61,6 @@ namespace Color
 		const std::unordered_map<ECSID, Ent>& GetEntities() const { return m_Entities; }
 	private:
 		std::unordered_map<ECSID, Ent> m_Entities;
+		bool m_Running = false, m_Paused = false;
 	};
 }

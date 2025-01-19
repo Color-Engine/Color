@@ -5,11 +5,14 @@
 #include "Core/EntryPoint.h"
 // -------------------------------------------------------
 
+#include "Sandbox2D.h"
+
 namespace Sandbox
 {
 	SandboxApp::SandboxApp(const Color::ApplicationSpecification& specification, const Color::CommandLineArgs& args)
 		: Color::Application(specification, args)
 	{
+		PushLayer(new Sandbox2D());
 	}
 
 	SandboxApp::~SandboxApp()
