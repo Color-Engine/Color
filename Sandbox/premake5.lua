@@ -24,6 +24,9 @@ project "Sandbox"
     links
     {
         "Color",
+		
+		"GLFW",
+		"Glad",
 		"fmt"
     }
 

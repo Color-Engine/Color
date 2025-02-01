@@ -7,3 +7,6 @@
 [submodule "Color/ThirdParty/fmt"]
 	path = Color/ThirdParty/fmt
 	url = https://github.com/Color-Engine/fmt
+[submodule "Color/ThirdParty/Glad"]
+	path = Color/ThirdParty/Glad
+	url = https://github.com/Color-Engine/glad

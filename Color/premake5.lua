@@ -19,6 +19,8 @@ project "Color"
     {
         "Source",
 		
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.fmt}"

@@ -63,7 +63,7 @@ inline OStream& operator<<(OStream& stream, const glm::qua<T, Q>& quaternion)
 	return stream << glm::to_string(quaternion);
 }
 
-#ifndef CL_SHIPPING
+#ifdef CL_TEST_BUILD
 
 #define CL_LOGGER_TRACE(logger, ...)   logger->trace(__VA_ARGS__)
 #define CL_LOGGER_INFO(logger, ...)    logger->info(__VA_ARGS__)

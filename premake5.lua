@@ -11,6 +11,8 @@ workspace "Color"
 include "Globals.lua"
 
 group "Engine/ThirdParty"
+	include "Color/ThirdParty/GLFW"
+	include "Color/ThirdParty/Glad"
 	include "Color/ThirdParty/fmt"
 group ""
 

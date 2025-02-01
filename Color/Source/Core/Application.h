@@ -1,6 +1,9 @@
 #pragma once
 
+#include "Core/Window.h"
 #include "Core/LayerStack.h"
+
+#include "Event/AppEvent.h"
 #include "Misc/CommandLine.h"
 
 #include <string>
@@ -11,6 +14,8 @@ namespace Color
 	{
 		std::string Name;
 		std::string WorkingDir;
+
+		WindowSpec WinSpec = { Name };
 	};
 	
 	class Application
@@ -28,6 +33,8 @@ namespace Color
 		void PopLayer(Layer* layer, bool deleteObject = true);
 		void PopOverlay(Layer* overlay, bool deleteObject = true);
 
+		Window* GetWindow() const { return m_Window.get(); }
+
 		const ApplicationSpecification& GetSpecification() const { return m_Specification; }
 		const CommandLineArgs& GetArgs() const { return m_Args; }
 
@@ -36,8 +43,13 @@ namespace Color
 
 		static Application* Get() { return s_Instance; }
 	private:
+		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+		void OnEvent(Event& e);
 		void CleanUp();
 	private:
+		Scope<Window> m_Window;
+
 		ApplicationSpecification m_Specification;
 		CommandLineArgs m_Args;
 

@@ -19,6 +19,8 @@ namespace Color
 		/** Ownership is released when popped, the caller must dispose of the layer. */
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* overlay);
+		/** Contrary to PopLayer and PopOverlay, this will dispose/release/free the layers and overlays from memory. */
+		void PopAll();
 
 		std::vector<Layer*>::iterator begin() { return m_Layers.begin(); }
 		std::vector<Layer*>::iterator end() { return m_Layers.end(); }

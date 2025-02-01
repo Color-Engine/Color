@@ -42,6 +42,13 @@ namespace Color
 				}
 			}
 		}
+
+		m_Window = Window::New(specification.WinSpec);
+		if (!m_Window->Create())
+		{
+			CL_CORE_FATAL("Main application creation failure, Window::Create returned false!");
+		}
+		m_Window->SetEventCallback(CL_BIND_METHOD(OnEvent));
 	}
 
 	Application::~Application()
@@ -68,13 +75,51 @@ namespace Color
 			{
 				layer->OnUpdate(ts);
 			}
+
+			m_Window->Update();
 		}
 
 		CleanUp();
 	}
 
+	bool Application::OnWindowClose(WindowCloseEvent& e)
+	{
+		Quit();
+		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		return false;
+	}
+
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher Dispatcher(e);
+		Dispatcher.Dispatch<WindowCloseEvent>(CL_BIND_METHOD(OnWindowClose));
+		Dispatcher.Dispatch<WindowResizeEvent>(CL_BIND_METHOD(OnWindowResize));
+
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+		{
+			if (e.Handled)
+			{
+				break;
+			}
+			(*it)->OnEvent(e);
+		}
+	}
+
 	void Application::CleanUp()
 	{
+		CL_CORE_TRACE("Application clean-up process initiated.");
+
+		while (!m_LayerStack.GetLayers().empty())
+		{
+			m_LayerStack.PopAll();
+		}
+
+		m_Window->Destroy();
+		CL_CORE_TRACE("Destroyed the main window.");
 	}
 
 	void Application::Quit()

@@ -9,10 +9,7 @@ namespace Color
 
 	LayerStack::~LayerStack()
 	{
-		for (Layer* layer : m_Layers)
-		{
-			delete layer;
-		}
+		PopAll();
 	}
 
 	void LayerStack::PushLayer(Layer* layer)
@@ -42,6 +39,16 @@ namespace Color
 		if (it != m_Layers.end())
 		{
 			m_Layers.erase(it);
+		}
+	}
+
+	void LayerStack::PopAll()
+	{
+		while (m_Layers.size())
+		{
+			Layer* layer = m_Layers[m_Layers.size() - 1];
+			layer->OnDetach();
+			delete layer;
 		}
 	}
 }

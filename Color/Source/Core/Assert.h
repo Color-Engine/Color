@@ -9,7 +9,7 @@
 	#define CL_DEBUGBREAK_BASE() raise(SIGTRAP)
 #endif
 
-#ifndef CL_SHIPPING
+#ifdef CL_TEST_BUILD
 	#define CL_DEBUGBREAK() CL_DEBUGBREAK_BASE()
 	#define CL_ASSERT_BASE(logger, expression, ...) if (!(expression)) { CL_LOGGER_ERROR(logger, "Assertion failed in file '" __FILE__ "' at line " CL_STRINGIFY(__LINE__) "! Expression '" #expression "' evaluted to false. " __VA_ARGS__); CL_DEBUGBREAK(); }
 #else

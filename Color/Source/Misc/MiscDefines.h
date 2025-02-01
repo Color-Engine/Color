@@ -6,3 +6,6 @@
 #define CL_STRINGIFY(x)        CL_STRINGIFY_DETAIL(x)
 
 #define CL_BIT(x) (1 << x)
+
+#define CL_BIND_METHOD_ON_OBJECT(pObject, method) [this](auto&&... args) -> decltype(auto) { return pObject->method(std::forward<decltype(args)>(args)...); }
+#define CL_BIND_METHOD(method) CL_BIND_METHOD_ON_OBJECT(this, method)

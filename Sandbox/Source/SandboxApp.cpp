@@ -26,5 +26,12 @@ Color::Application* Color::CreateApplicationInstance(const Color::CommandLineArg
 	specification.Name = "Sandbox";
 	specification.WorkingDir = ".";
 
+	specification.WinSpec.Title = specification.Name;
+	specification.WinSpec.Width = 1600;
+	specification.WinSpec.Height = 900;
+	specification.WinSpec.Fullscreen = false;
+	specification.WinSpec.Resizable = true;
+	specification.WinSpec.VSync = true;
+
 	return new Sandbox::SandboxApp(specification, args);
 }
