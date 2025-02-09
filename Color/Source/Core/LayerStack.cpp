@@ -49,6 +49,8 @@ namespace Color
 			Layer* layer = m_Layers[m_Layers.size() - 1];
 			layer->OnDetach();
 			delete layer;
+
+			m_Layers.pop_back();
 		}
 	}
 }

@@ -10,3 +10,6 @@
 [submodule "Color/ThirdParty/Glad"]
 	path = Color/ThirdParty/Glad
 	url = https://github.com/Color-Engine/glad
+[submodule "Color/ThirdParty/GLFW"]
+	path = Color/ThirdParty/GLFW
+	url = https://github.com/Color-Engine/GLFW
