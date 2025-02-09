@@ -2,11 +2,12 @@
 #include "Window.h"
 
 #include "Platform/Windows/WindowsWindow.h"
+#include "Platform/Linux/LinuxWindow.h"
 
 namespace Color
 {
-	Scope<Window> Window::New(const WindowSpec& spec)
+	Ref<Window> Window::New(const WindowSpec& spec)
 	{
-		return MakeScope<CL_ConcatWithPlatformName(Window)>(spec);
+		return MakeRef<CL_ConcatWithPlatformName(Window)>(spec);
 	}
 }

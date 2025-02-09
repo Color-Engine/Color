@@ -70,7 +70,8 @@ namespace Color
 		virtual bool IsFullscreen() const = 0;
 		virtual bool IsResizable() const = 0;
 		virtual bool IsVSync() const = 0;
+		virtual void* GetNativeWindow() const = 0;
 
-		static Scope<Window> New(const WindowSpec& spec = {});
+		static Ref<Window> New(const WindowSpec& spec = {});
 	};
 }

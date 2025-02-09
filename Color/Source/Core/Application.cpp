@@ -1,6 +1,8 @@
 #include "EnginePCH.h"
 #include "Application.h"
 
+#include "Input/Input.h"
+
 #include "Utils/PlatformUtils.h"
 #include "Utils/FileSystem.h"
 
@@ -49,6 +51,7 @@ namespace Color
 			CL_CORE_FATAL("Main application creation failure, Window::Create returned false!");
 		}
 		m_Window->SetEventCallback(CL_BIND_METHOD(OnEvent));
+		Input::Init(m_Window);
 	}
 
 	Application::~Application()

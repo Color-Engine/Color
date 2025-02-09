@@ -48,7 +48,7 @@ namespace Color
 		void OnEvent(Event& e);
 		void CleanUp();
 	private:
-		Scope<Window> m_Window;
+		Ref<Window> m_Window;
 
 		ApplicationSpecification m_Specification;
 		CommandLineArgs m_Args;

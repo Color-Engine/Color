@@ -39,6 +39,7 @@ namespace Color
 		virtual bool IsFullscreen() const override { return m_Data.Fullscreen; }
 		virtual bool IsResizable() const override { return m_Data.Resizable; }
 		virtual bool IsVSync() const override { return m_Data.VSync; }
+		virtual void* GetNativeWindow() const override { return m_Handle; }
 	private:
 		GLFWwindow* m_Handle = nullptr;
 		Scope<GraphicsContext> m_Context;
