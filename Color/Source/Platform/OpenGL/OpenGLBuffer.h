@@ -33,6 +33,6 @@ namespace Color
 		virtual size_t GetCount() const override { return m_Count; }
 	private:
 		uint32_t m_RendererID = 0;
-		uint32_t m_Count = 0;
+		size_t m_Count = 0;
 	};
 }

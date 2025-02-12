@@ -5,7 +5,7 @@
 
 namespace Color
 {
-	static uint32_t CreateAndSetupBufferGL(uint32_t& id, GLenum type, const void* data, size_t size, GLenum usage)
+	static void CreateAndSetupBufferGL(uint32_t& id, GLenum type, const void* data, size_t size, GLenum usage)
 	{
 		glCreateBuffers(1, &id);
 		glBindBuffer(type, id);

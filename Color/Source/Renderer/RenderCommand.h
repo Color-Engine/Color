@@ -32,6 +32,16 @@ namespace Color
 		{
 			s_API->SetLineWidth(width);
 		}
+
+		static void DrawLines(const Ref<VertexArray>& vertexArray, size_t vertexCount)
+		{
+			s_API->DrawLines(vertexArray, vertexCount);
+		}
+
+		static void DrawIndices(const Ref<VertexArray>& vertexArray, size_t indexCount = 0)
+		{
+			s_API->DrawIndices(vertexArray, indexCount);
+		}
 	private:
 		static Scope<RendererAPI> s_API;
 	};

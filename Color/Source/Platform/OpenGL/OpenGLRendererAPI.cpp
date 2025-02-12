@@ -63,4 +63,17 @@ namespace Color
 	{
 		glLineWidth(width);
 	}
+
+	void OpenGLRendererAPI::DrawLines(const Ref<VertexArray>& vertexArray, size_t vertexCount)
+	{
+		vertexArray->Bind();
+		glDrawArrays(GL_TRIANGLES, 0, (GLsizei) vertexCount);
+	}
+
+	void OpenGLRendererAPI::DrawIndices(const Ref<VertexArray>& vertexArray, size_t indexCount)
+	{
+		CL_CORE_ASSERT(indexCount || (vertexArray->GetIndexBuffer() && vertexArray->GetIndexBuffer()->GetCount()), "Invalid amount of indices to draw!");
+		size_t count = indexCount ? indexCount : vertexArray->GetIndexBuffer()->GetCount();
+		glDrawElements(GL_TRIANGLES, (GLsizei) count, GL_UNSIGNED_INT, nullptr);
+	}
 }
